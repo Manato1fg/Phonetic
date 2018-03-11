@@ -6,9 +6,9 @@ public class Main{
 	public HashMap<String, String> WORDS = new HashMap<String, String>();
 	public HashMap<String, String> TABLE = new HashMap<String, String>();
 	public static void main(String[] args){
-		FileCreate fc = new FileCreate();
+		Main main = new Main();
 		try{
-			File file = new File("./eigo.7b");
+			File file = new File("./word.7b");
 			FileReader filereader = new FileReader(file);
 			BufferedReader br = new BufferedReader(filereader);
 
@@ -19,7 +19,7 @@ public class Main{
 			while(str != null){
 				re = str.split("  ");
 
-				fc.WORDS.put(re[0], re[1]);
+				main.WORDS.put(re[0], re[1]);
 				
 				str = br.readLine();
 			}
@@ -35,19 +35,20 @@ public class Main{
 			while(str1 != null){
 				re1 = str1.split(" ");
 
-				fc.TABLE.put(re1[0], re1[1]);
+				main.TABLE.put(re1[0], re1[1]);
 				
 				str1 = br1.readLine();
 			}
 
 			String v = "";
 			for (String s : args) {
-				v = fc.WORDS.get(s.toUpperCase());
+				s = s.replace("!", "").replace("?", "").replace(".", "").replace(",", "");
+				v = main.WORDS.get(s.toUpperCase());
 				if(v != null){
 					String[] w = v.split(" ");
 					String y = "";
 					for (String x : w) {
-						y += fc.TABLE.get(x);
+						y += main.TABLE.get(x);
 					}
 					System.out.print(y+" ");
 				}
