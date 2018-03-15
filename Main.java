@@ -27,6 +27,11 @@ public class Main{
 			for (String s : args) {
 				s = s.replace("!", "").replace("?", "").replace(".", "").replace(",", "").toUpperCase();
 
+				if(!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".contains(String.valueOf(s.charAt(0)))){
+					System.out.print(s+" ");
+					continue;
+				}
+
 				File file2 = new File("./words/"+String.valueOf(s.charAt(0))+"/word.txt");
 				FileReader filereader2 = new FileReader(file2);
 				BufferedReader br2 = new BufferedReader(filereader2);
@@ -49,6 +54,8 @@ public class Main{
 						y += main.TABLE.get(x);
 					}
 					System.out.print(y+" ");
+				}else{
+					System.out.print(s+" ");
 				}
 				v = "";
 			}
